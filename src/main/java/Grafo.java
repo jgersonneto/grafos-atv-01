@@ -59,4 +59,36 @@ public class Grafo {
     }
     return count;
   }
+
+  public boolean isNeighbor(String nodeId1, String nodeId2) {
+	  for(Aresta aresta: arestas){
+		  if((aresta.getVertice1().getId() == nodeId1 &&
+			aresta.getVertice2().getId() == nodeId2)||
+			(aresta.getVertice1().getId() == nodeId2 &&
+			aresta.getVertice2().getId() == nodeId1)){
+			  return true;
+		  }
+	  }
+	  return false;
+  }
+
+  public int getNumberOfIsolatedVertice() {
+	  int count = 0;
+	  for(Vertice vertice : this.vertices) {
+		  if(getNumberOfEdgesByNodeId(vertice.getId())==0) {
+			  count++;
+		  }
+	  }
+	  return count;
+  }
+
+  public int getNumberOfEndVertice() {
+	  int count = 0;
+	  for(Vertice vertice : this.vertices) {
+		  if(getNumberOfEdgesByNodeId(vertice.getId())==1) {
+			  count++;
+		  }
+	  }
+	  return count;
+  }
 }
