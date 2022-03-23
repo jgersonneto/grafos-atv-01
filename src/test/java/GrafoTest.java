@@ -114,5 +114,69 @@ public class GrafoTest {
 
     Assert.assertEquals(3, grafo.getNumberOfEdgesByNodeId("1"));
   }
+  
+  @Test
+  public void expectTrueForNeighbor(){
+    Grafo grafo = new Grafo();
+    Vertice vertice1 = new Vertice("1");
+    Vertice vertice2 = new Vertice("2");
+    Vertice vertice3 = new Vertice("3");
+    Vertice vertice4 = new Vertice("4");
 
+    grafo.addNewVertice(vertice1);
+    grafo.addNewVertice(vertice2);
+    grafo.addNewVertice(vertice3);
+    grafo.addNewVertice(vertice4);
+
+    grafo.addNewAresta(vertice1, vertice2);
+    grafo.addNewAresta(vertice1, vertice3);
+    grafo.addNewAresta(vertice1, vertice4);
+
+    Assert.assertTrue(grafo.isNeighbor("1", "4"));
+  }
+  
+  @Test
+  public void expectTrueAmountIsolatedVertice(){
+    Grafo grafo = new Grafo();
+    Vertice vertice1 = new Vertice("1");
+    Vertice vertice2 = new Vertice("2");
+    Vertice vertice3 = new Vertice("3");
+    Vertice vertice4 = new Vertice("4");
+
+    grafo.addNewVertice(vertice1);
+    grafo.addNewVertice(vertice2);
+    grafo.addNewVertice(vertice3);
+    grafo.addNewVertice(vertice4);
+
+    grafo.addNewAresta(vertice1, vertice2);
+    grafo.addNewAresta(vertice1, vertice3);
+    grafo.addNewAresta(vertice2, vertice1);
+
+    Assert.assertEquals(1, grafo.getNumberOfIsolatedVertice());
+  }
+  
+  @Test
+  public void expectTrueAmountEndVertice(){
+    Grafo grafo = new Grafo();
+    Vertice vertice1 = new Vertice("1");
+    Vertice vertice2 = new Vertice("2");
+    Vertice vertice3 = new Vertice("3");
+    Vertice vertice4 = new Vertice("4");
+    Vertice vertice5 = new Vertice("5");
+
+    grafo.addNewVertice(vertice1);
+    grafo.addNewVertice(vertice2);
+    grafo.addNewVertice(vertice3);
+    grafo.addNewVertice(vertice4);
+    grafo.addNewVertice(vertice5);
+
+    grafo.addNewAresta(vertice1, vertice2);
+    grafo.addNewAresta(vertice2, vertice3);
+    grafo.addNewAresta(vertice3, vertice4);
+    grafo.addNewAresta(vertice4, vertice1);
+    grafo.addNewAresta(vertice5, vertice4);
+
+    Assert.assertEquals(1, grafo.getNumberOfEndVertice());
+  }
+ 
 }
